@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import styles from './UserCard.module.css';
 
 function UserCard(props) {
   const handleClick = () => {
-    const { handleSelect, id } = props;
-    handleSelect(id);
+    const { handleSelect, user } = props;
+    handleSelect(user);
   };
 
   const {
-    name,
-    email,
     isSelected,
-    picture: { medium: imgSrc },
+    user: {
+      name,
+      email,
+      picture: { medium: imgSrc },
+    },
   } = props;
 
   const cardStyles = classNames(styles.userCard, {
