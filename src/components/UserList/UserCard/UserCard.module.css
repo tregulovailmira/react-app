@@ -5,7 +5,8 @@
   align-items: center;
   min-width: 300px;
   max-width: 450px;
-  min-height: 500px;
+  min-height: 200px;
+  margin: 10px;
   background-color: blanchedalmond;
   border-radius: 15px;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UserCard from './UserCard';
-import {loadUsers} from '../../api';
+import { loadUsers } from '../../api';
+import styles from './UserList.module.css';
 
 class UserList extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class UserList extends Component {
     this.state = {
       users: [],
       isFetching: false,
-      error: null,
+      error: null
     };
   }
 
@@ -57,15 +58,38 @@ class UserList extends Component {
     ));
   };
 
+  renderSelectedUsers = () => {
+    const { users } = this.state;
+    return users
+      .filter(({ isSelected }) => isSelected)
+      .map(
+        (user) => (
+          (
+            <UserCard
+              key={user.login.uuid}
+              noClick
+              {...user}
+            />
+          )
+        )
+      );
+  };
+
   render() {
-    const { isFetching, error } = this.state;
+    const { isFetching, error, isSelected } = this.state;
 
     return (
-      <section>
-        <h1>User List</h1>
-        {error && <Error error={error} />}
-        {isFetching ? <Spinner /> : this.renderUsers()}
-      </section>
+      <div className={styles.userListWrapper}> 
+        <section>
+          <h1>User List</h1>
+          {error && <Error error={error} />}
+          {isFetching ? <Spinner /> : this.renderUsers()}
+        </section>
+        <section>
+          <h1>Selected Users</h1>
+          {this.renderSelectedUsers()}
+        </section>
+      </div>
     );
   }
 }

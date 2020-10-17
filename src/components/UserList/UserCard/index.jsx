@@ -4,8 +4,8 @@ import styles from './UserCard.module.css';
 
 function UserCard(props) {
   const handleClick = () => {
-    const { handleSelect, id } = props;
-    handleSelect(id);
+    const { handleSelect, id, noClick } = props;
+    !noClick && handleSelect(id);
   };
 
   const {
@@ -20,12 +20,12 @@ function UserCard(props) {
   });
 
   return (
-    <article onClick={handleClick} className={cardStyles}>
+    <article className={cardStyles}>
       <h1>
         <span>{name.title}</span>
         {name.first} {name.last}
       </h1>
-      <img src={imgSrc} alt='user' />
+      <img src={imgSrc} alt='user' onClick={handleClick}/>
       <p>{email}</p>
     </article>
   );
