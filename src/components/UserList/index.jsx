@@ -6,6 +6,8 @@ import { loadUsers } from '../../api';
 import SelectedUserList from './SelectedUserList';
 import { toggleItemInArray } from '../../utils';
 import CONSTANTS from '../../CONSTANTS';
+import Error from '../Error';
+import Spinner from '../Spinner';
 
 class UserList extends Component {
   constructor(props) {
@@ -35,7 +37,7 @@ class UserList extends Component {
     const parsedUsers = JSON.parse(
       localStorage.getItem(CONSTANTS.SELECTED_USERS_KEY)
     );
-    console.log(parsedUsers);
+    //console.log(parsedUsers);
     this.setState({
       selectedUsers: parsedUsers || [],
     });
@@ -134,14 +136,6 @@ class UserList extends Component {
       </div>
     );
   }
-}
-
-function Error(props) {
-  return <div>error</div>;
-}
-
-function Spinner(props) {
-  return <div>LOADING...</div>;
 }
 
 export default UserList;
