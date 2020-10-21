@@ -1,25 +1,34 @@
 import React, { Component } from 'react';
+import Error from '../Error';
+import Spinner from '../Spinner';
 import PropTypes from 'prop-types';
 
 class DataLoader extends Component {
   state = {
-    data: [],
+    data: {},
     error: null,
-    isFetching: false,
+    isFetching: true,
   };
 
   componentDidMount() {
     this.fetchData();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const { page } = this.props;
+    if (page !== prevProps.page) {
+      this.fetchData();
+    }
+  }
+  
   fetchData = async () => {
-    const { getData } = this.props;
+    const { getData, page } = this.props;
 
     this.setState({
       isFetching: true,
     });
     try {
-      const data = await getData();
+      const data = await getData(3, page);
       this.setState({
         data,
         isFetching: false,
@@ -39,12 +48,12 @@ class DataLoader extends Component {
     const { children } = this.props;
 
     if (error) {
-      return <div>ERROR</div>;
+      return <Error />;
     }
     if (isFetching) {
-      return <div>LOADING....</div>;
+      return <Spinner />;
     }
-    return children(data);
+    return children(data.results);
   }
 }
 

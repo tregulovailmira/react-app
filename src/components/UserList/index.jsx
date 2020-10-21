@@ -6,25 +6,21 @@ import { loadUsers } from '../../api';
 import SelectedUserList from './SelectedUserList';
 import { toggleItemInArray } from '../../utils';
 import CONSTANTS from '../../CONSTANTS';
-import Error from '../Error';
-import Spinner from '../Spinner';
+import DataLoader from '../DataLoader';
+import Pagination from '../Pagination';
 
 class UserList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
+      // users: [],
       selectedUsers: [],
-      isFetching: false,
-      error: null,
+      currentPage: 1,
     };
   }
 
   async componentDidMount() {
-    this.fetchUsers();
-
-   /*  
-   
+    /*  
    TODO: find event on unload
 
    document.addEventListener('beforeunload',()=>{
@@ -43,24 +39,8 @@ class UserList extends Component {
     });
   }
 
-  
-  fetchUsers = async (page = 1) => {
-    this.setState({
-      isFetching: true,
-    });
-    try {
-      const users = await loadUsers(10, page);
-      this.setState({
-        users: users.results,
-        isFetching: false,
-        error: null,
-      });
-    } catch (error) {
-      this.setState({
-        error,
-        isFetching: false,
-      });
-    }
+  setPage = (currentPage) => {
+    this.setState({ currentPage });
   };
 
   handleSelect = (newUser) => {
@@ -73,9 +53,8 @@ class UserList extends Component {
     });
   };
 
-  renderUsers = () => {
-    const { users, selectedUsers } = this.state;
-
+  renderUsers = (users) => {
+    const { selectedUsers } = this.state;
     const userListStyles = {
       container: styles.userCardMargin,
     };
@@ -94,14 +73,6 @@ class UserList extends Component {
     ));
   };
 
-  renderPaginaton = () => {
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((btnNum) => (
-      <button key={btnNum} onClick={() => this.fetchUsers(btnNum)}>
-        {btnNum}
-      </button>
-    ));
-  };
-
   renderSaveUsersButton = () => {
     const clickHandler = () => {
       localStorage.setItem(
@@ -113,17 +84,22 @@ class UserList extends Component {
   };
 
   render() {
-    const { isFetching, error, selectedUsers } = this.state;
+    const { selectedUsers, currentPage } = this.state;
 
     return (
       <div>
-        {this.renderPaginaton()}
+        {<Pagination setPage={this.setPage} amountOfPages={10} />}
         {this.renderSaveUsersButton()}
         <div className={styles.listContainer}>
           <section className={styles.userList}>
             <h1>User List</h1>
-            {error && <Error error={error} />}
-            {isFetching ? <Spinner /> : this.renderUsers()}
+            {
+              <DataLoader getData={loadUsers} page={currentPage}>
+                {(users) => {
+                  return <div>{this.renderUsers(users)}</div>;
+                }}
+              </DataLoader>
+            }
           </section>
           <section className={styles.userList}>
             <h1>Selected Users List</h1>
