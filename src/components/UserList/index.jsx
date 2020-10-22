@@ -8,6 +8,7 @@ import { toggleItemInArray } from '../../utils';
 import CONSTANTS from '../../CONSTANTS';
 import DataLoader from '../DataLoader';
 import Pagination from '../Pagination';
+import SaveUsersButton from './SaveUsersButton';
 
 class UserList extends Component {
   constructor(props) {
@@ -20,20 +21,11 @@ class UserList extends Component {
   }
 
   async componentDidMount() {
-    /*  
-   TODO: find event on unload
-
-   document.addEventListener('beforeunload',()=>{
-      localStorage.setItem(
-        CONSTANTS.SELECTED_USERS_KEY,
-        JSON.stringify(this.state.selectedUsers)
-      );
-    } )*/
 
     const parsedUsers = JSON.parse(
       localStorage.getItem(CONSTANTS.SELECTED_USERS_KEY)
     );
-    //console.log(parsedUsers);
+    console.log(parsedUsers);
     this.setState({
       selectedUsers: parsedUsers || [],
     });
@@ -73,23 +65,13 @@ class UserList extends Component {
     ));
   };
 
-  renderSaveUsersButton = () => {
-    const clickHandler = () => {
-      localStorage.setItem(
-        CONSTANTS.SELECTED_USERS_KEY,
-        JSON.stringify(this.state.selectedUsers)
-      );
-    };
-    return <button onClick={clickHandler}>Save users</button>;
-  };
-
   render() {
     const { selectedUsers, currentPage } = this.state;
 
     return (
       <div>
         {<Pagination setPage={this.setPage} amountOfPages={10} />}
-        {this.renderSaveUsersButton()}
+        <SaveUsersButton selectedUsers={selectedUsers} />
         <div className={styles.listContainer}>
           <section className={styles.userList}>
             <h1>User List</h1>
