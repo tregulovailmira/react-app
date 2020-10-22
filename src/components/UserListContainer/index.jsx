@@ -5,12 +5,11 @@ import CONSTANTS from '../../CONSTANTS';
 import { loadUsers } from '../../api';
 import DataLoader from '../DataLoader';
 import Pagination from '../Pagination';
-import UserCard from './UserCard';
-import SelectedUserList from './SelectedUserList';
+import UserList from './UserList';
 import SaveUsersButton from './SaveUsersButton';
-import styles from './UserList.module.css';
+import styles from './UserListContainer.module.css';
 
-class UserList extends Component {
+class UserListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,50 +41,37 @@ class UserList extends Component {
     });
   };
 
-  renderUsers = (users) => {
-    const { selectedUsers } = this.state;
-    // const userListStyles = {
-    //   container: styles.userCardMargin,
-    // };
-
-    return users.map((user) => (
-      <UserCard
-        // classes={userListStyles}
-        key={user.login.uuid}
-        isSelected={Boolean(
-          selectedUsers.find(
-            (currentUser) => currentUser.login.uuid === user.login.uuid
-          )
-        )}
-        handleSelect={this.handleSelect}
-        user={user}
-      />
-    ));
-  };
-
   render() {
     const { selectedUsers, currentPage } = this.state;
 
     return (
       <div>
-        <Pagination setPage={this.setPage} amountOfPages={CONSTANTS.AMOUNT_OF_PAGES} />
+        <Pagination
+          setPage={this.setPage}
+          amountOfPages={CONSTANTS.AMOUNT_OF_PAGES}
+        />
         <SaveUsersButton selectedUsers={selectedUsers} />
 
         <div className={styles.listContainer}>
           <section className={styles.userList}>
             <h1>User List</h1>
-            <DataLoader getData={loadUsers} page={currentPage} amountOfUsers={CONSTANTS.RESULTS_PER_PAGE}>
-              {(users) => {
-                return <div>{this.renderUsers(users)}</div>;
-              }}
+            <DataLoader
+              getData={loadUsers}
+              page={currentPage}
+              amountOfUsers={CONSTANTS.RESULTS_PER_PAGE}
+            >
+              {(users) => (
+                <UserList
+                  handleSelect={this.handleSelect}
+                  users={users}
+                  selectedUsers={selectedUsers}
+                />
+              )}
             </DataLoader>
           </section>
           <section className={styles.userList}>
             <h1>Selected Users List</h1>
-            <SelectedUserList
-              handleSelect={this.handleSelect}
-              users={selectedUsers}
-            />
+            <UserList handleSelect={this.handleSelect} users={selectedUsers} />
           </section>
         </div>
       </div>
@@ -93,4 +79,4 @@ class UserList extends Component {
   }
 }
 
-export default UserList;
+export default UserListContainer;

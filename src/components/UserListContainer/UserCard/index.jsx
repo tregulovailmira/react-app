@@ -10,7 +10,7 @@ function UserCard(props) {
   };
 
   const {
-    // classes:{container},
+    stylesClasses: { container },
     isSelected,
     user: {
       name,
@@ -19,9 +19,7 @@ function UserCard(props) {
     },
   } = props;
 
-  const cardStyles = classNames(styles.userCard,
-    // container, 
-     {
+  const cardStyles = classNames(styles.userCard, container, {
     [styles.selectedUserCard]: isSelected,
   });
 

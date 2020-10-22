@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { loadPosts, loadUsers } from './api';
 import './App.css';
-import UserList from './components/UserList';
-import TestComponent from './components/Test';
-import DataLoader from './components/DataLoader';
+import UserListContainer from './components/UserListContainer';
 
 class App extends Component {
   render() {
@@ -17,7 +15,7 @@ class App extends Component {
         </DataLoader> */}
 
         
-        <UserList/>
+        <UserListContainer />
         </>
     );
     // const test = React.createElement(TestComponent, {}, 'etestet', 'testse');

@@ -1,13 +1,13 @@
 .userList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 50vw;
-}
-
-.userCardMargin {
-  margin: 10px;
 }
 
 .listContainer {
   display: flex;
+  justify-content: center;
   max-width: 100%;
   width: 100%;
 }
