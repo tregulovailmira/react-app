@@ -19,12 +19,11 @@ function UserCard(props) {
     },
   } = props;
 
-  const cardStyles = classNames(
-    styles.userCard,
-    /* container */ {
-      [styles.selectedUserCard]: isSelected,
-    }
-  );
+  const cardStyles = classNames(styles.userCard,
+    // container, 
+     {
+    [styles.selectedUserCard]: isSelected,
+  });
 
   return (
     <article onClick={handleClick} className={cardStyles}>
@@ -32,7 +31,7 @@ function UserCard(props) {
         <span>{name.title}</span>
         {name.first} {name.last}
       </h1>
-      <img src={imgSrc} alt='user' />
+      <img src={imgSrc} alt="user" />
       <p>{email}</p>
     </article>
   );

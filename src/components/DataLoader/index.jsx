@@ -22,13 +22,13 @@ class DataLoader extends Component {
   }
 
   fetchData = async () => {
-    const { getData, page } = this.props;
+    const { getData, page, amountOfUsers } = this.props;
 
     this.setState({
       isFetching: true,
     });
     try {
-      const data = await getData(3, page);
+      const data = await getData(amountOfUsers, page);
       this.setState({
         data,
         isFetching: false,

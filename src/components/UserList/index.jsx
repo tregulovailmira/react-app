@@ -1,31 +1,28 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import UserCard from './UserCard';
-import styles from './UserList.module.css';
-import { loadUsers } from '../../api';
-import SelectedUserList from './SelectedUserList';
 import { toggleItemInArray } from '../../utils';
 import CONSTANTS from '../../CONSTANTS';
+import { loadUsers } from '../../api';
 import DataLoader from '../DataLoader';
 import Pagination from '../Pagination';
+import UserCard from './UserCard';
+import SelectedUserList from './SelectedUserList';
 import SaveUsersButton from './SaveUsersButton';
+import styles from './UserList.module.css';
 
 class UserList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // users: [],
       selectedUsers: [],
       currentPage: 1,
     };
   }
 
   async componentDidMount() {
-
     const parsedUsers = JSON.parse(
       localStorage.getItem(CONSTANTS.SELECTED_USERS_KEY)
     );
-    console.log(parsedUsers);
     this.setState({
       selectedUsers: parsedUsers || [],
     });
@@ -47,12 +44,13 @@ class UserList extends Component {
 
   renderUsers = (users) => {
     const { selectedUsers } = this.state;
-    const userListStyles = {
-      container: styles.userCardMargin,
-    };
+    // const userListStyles = {
+    //   container: styles.userCardMargin,
+    // };
 
     return users.map((user) => (
       <UserCard
+        // classes={userListStyles}
         key={user.login.uuid}
         isSelected={Boolean(
           selectedUsers.find(
@@ -70,18 +68,17 @@ class UserList extends Component {
 
     return (
       <div>
-        {<Pagination setPage={this.setPage} amountOfPages={10} />}
+        <Pagination setPage={this.setPage} amountOfPages={CONSTANTS.AMOUNT_OF_PAGES} />
         <SaveUsersButton selectedUsers={selectedUsers} />
+
         <div className={styles.listContainer}>
           <section className={styles.userList}>
             <h1>User List</h1>
-            {
-              <DataLoader getData={loadUsers} page={currentPage}>
-                {(users) => {
-                  return <div>{this.renderUsers(users)}</div>;
-                }}
-              </DataLoader>
-            }
+            <DataLoader getData={loadUsers} page={currentPage} amountOfUsers={CONSTANTS.RESULTS_PER_PAGE}>
+              {(users) => {
+                return <div>{this.renderUsers(users)}</div>;
+              }}
+            </DataLoader>
           </section>
           <section className={styles.userList}>
             <h1>Selected Users List</h1>
