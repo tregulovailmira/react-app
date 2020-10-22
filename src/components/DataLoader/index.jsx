@@ -20,7 +20,7 @@ class DataLoader extends Component {
       this.fetchData();
     }
   }
-  
+
   fetchData = async () => {
     const { getData, page } = this.props;
 
@@ -42,7 +42,7 @@ class DataLoader extends Component {
     }
   };
 
-  render() {
+  renderData = () => {
     const { data, isFetching, error } = this.state;
 
     const { children } = this.props;
@@ -54,6 +54,10 @@ class DataLoader extends Component {
       return <Spinner />;
     }
     return children(data.results);
+  };
+
+  render() {
+    return <>{this.renderData()}</>;
   }
 }
 
