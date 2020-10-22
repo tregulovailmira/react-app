@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import UserCard from '../UserCard';
 import styles from './UserList.module.css';
 
@@ -22,5 +23,11 @@ const UserList = (props) => {
     />
   ));
 };
+
+UserList.propTypes = {
+  users: PropTypes.array.isRequired,
+  handleSelect: PropTypes.func.isRequired,
+  selectedUsers: PropTypes.array,
+}
 
 export default UserList;

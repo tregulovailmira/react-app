@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Error from '../Error';
 import Spinner from '../Spinner';
-import PropTypes from 'prop-types';
 
 class DataLoader extends Component {
   state = {
@@ -63,6 +63,8 @@ class DataLoader extends Component {
 
 DataLoader.propTypes = {
   getData: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
+  amountOfUsers: PropTypes.number.isRequired,
   children: PropTypes.func.isRequired,
 };
 
