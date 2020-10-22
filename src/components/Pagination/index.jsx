@@ -1,13 +1,8 @@
 import React from 'react';
+import { createArrayFromTo } from '../../utils';
 
 const Pagination = ({ setPage, amountOfPages }) => {
-
-  const pagesArray = Array.from(
-    { length: amountOfPages },
-    (item, index) => index + 1
-  );
-
-  return pagesArray.map((btnNum) => (
+  return createArrayFromTo(1, amountOfPages).map((btnNum) => (
     <button key={btnNum} onClick={() => setPage(btnNum)}>
       {btnNum}
     </button>
