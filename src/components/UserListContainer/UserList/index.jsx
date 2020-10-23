@@ -28,6 +28,6 @@ UserList.propTypes = {
   users: PropTypes.array.isRequired,
   handleSelect: PropTypes.func.isRequired,
   selectedUsers: PropTypes.array,
-}
+};
 
 export default UserList;

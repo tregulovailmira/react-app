@@ -45,12 +45,15 @@ class UserListContainer extends Component {
     const { selectedUsers, currentPage } = this.state;
 
     return (
-      <div>
-        <Pagination
-          setPage={this.setPage}
-          amountOfPages={CONSTANTS.AMOUNT_OF_PAGES}
-        />
-        <SaveUsersButton selectedUsers={selectedUsers} />
+      <div className={styles.userListWrapper}>
+        <div className={styles.controlsContainer}>
+          <Pagination
+            currentPage={currentPage}
+            setPage={this.setPage}
+            amountOfPages={CONSTANTS.AMOUNT_OF_PAGES}
+          />
+          <SaveUsersButton selectedUsers={selectedUsers} />
+        </div>
 
         <div className={styles.listContainer}>
           <section className={styles.userList}>

@@ -1,0 +1,12 @@
+.pagination {
+  width: 40px;
+}
+
+.notCurrentPage:hover {
+  background-color: #5f9ea0;
+}
+
+.currentPage {
+  cursor: default;
+  background-color: #f0f0f0;
+}

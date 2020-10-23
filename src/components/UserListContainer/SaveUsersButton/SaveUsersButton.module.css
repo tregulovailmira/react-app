@@ -1,0 +1,7 @@
+.saveButton:hover {
+  background-color: #5f9ea0;
+}
+
+.saveButton:active {
+  background-color: #ffebcd;
+}

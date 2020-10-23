@@ -42,7 +42,7 @@ class DataLoader extends Component {
     }
   };
 
-  renderData = () => {
+  render() {
     const { data, isFetching, error } = this.state;
 
     const { children } = this.props;
@@ -54,10 +54,6 @@ class DataLoader extends Component {
       return <Spinner />;
     }
     return children(data.results);
-  };
-
-  render() {
-    return <>{this.renderData()}</>;
   }
 }
 

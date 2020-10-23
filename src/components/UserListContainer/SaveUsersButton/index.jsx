@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CONSTANTS from '../../../CONSTANTS';
+import styles from './SaveUsersButton.module.css';
 
 class SaveUsersButton extends Component {
   clickHandler = () => {
@@ -12,7 +13,11 @@ class SaveUsersButton extends Component {
   };
 
   render() {
-    return <button onClick={this.clickHandler}>Save users</button>;
+    return (
+      <button onClick={this.clickHandler} className={styles.saveButton}>
+        Save users
+      </button>
+    );
   }
 }
 
