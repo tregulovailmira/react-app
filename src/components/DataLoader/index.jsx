@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Error from '../Error';
-import Spinner from '../Spinner';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 class DataLoader extends Component {
   state = {
@@ -44,14 +44,13 @@ class DataLoader extends Component {
 
   render() {
     const { data, isFetching, error } = this.state;
-
     const { children } = this.props;
 
     if (error) {
       return <Error />;
     }
     if (isFetching) {
-      return <Spinner />;
+      return <ScaleLoader color={'#5f9ea0'} loading={this.state.isFetching} />;
     }
     return children(data.results);
   }
