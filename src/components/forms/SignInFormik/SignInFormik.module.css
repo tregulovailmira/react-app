@@ -1,0 +1,39 @@
+div {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input,
+.submitButton {
+  box-sizing: border-box;
+  height: 30px;
+  margin: 5px 0 10px;
+  border-radius: 5px;
+}
+
+.input {
+    border: 1px solid lightgray;
+}
+
+.inputTitle {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.submitButton {
+  border: none;
+  outline-style: none;
+  background-color: #2ea44f;
+  color: #ffffff;
+}
+
+.submitButton:hover {
+    background-color: #2c964c;
+}
