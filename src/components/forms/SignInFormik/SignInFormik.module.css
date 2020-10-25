@@ -7,19 +7,27 @@ div {
 .formWrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  max-height: 200px;
+  width: 300px;
+  padding: 30px 20px 10px;
+  margin: 50px;
 }
 
 .input,
 .submitButton {
   box-sizing: border-box;
   height: 30px;
-  margin: 5px 0 10px;
+  margin: 5px 0 20px;
   border-radius: 5px;
 }
 
 .input {
-    border: 1px solid lightgray;
+  border: 1px solid lightgray;
+  padding: 0 5px;
+  width: 100%;
 }
 
 .inputTitle {
@@ -35,5 +43,37 @@ div {
 }
 
 .submitButton:hover {
-    background-color: #2c964c;
+  background-color: #2c964c;
+}
+
+.errorMessage {
+  cursor: pointer;
+  position: absolute;
+  z-index: 5;
+  padding: 5px 10px;
+  background-color: #c56c71;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  color: white;
+}
+
+.errorMessage:before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 10px 0 10px;
+  border-color: #c56c71 transparent transparent transparent;
+}
+
+.emailError {
+  top: 19px;
+  left: 110px;
+}
+
+.passwordError {
+  top: 90px;
+  left: 90px;
 }
