@@ -1,10 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signInScheme } from "../../../utils/validationScheams";
 import styles from "./SignInFormik.module.css";
 import Classnames from "classnames";
-import SignInIcon from './SignInIcon';
 
 const SignInForm = () => {
   const initialValues = {
@@ -26,8 +24,6 @@ const SignInForm = () => {
 
   return (
     <>
-      <SignInIcon />
-
       <Formik
         initialValues={initialValues}
         validationSchema={signInScheme}

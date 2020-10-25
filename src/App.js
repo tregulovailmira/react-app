@@ -3,6 +3,7 @@ import "./App.css";
 // import UserListContainer from "./components/UserListContainer";
 // import Form from "./components/forms/SignInForm";
 // import SignInFormik from "./components/forms/SignInFormik";
+import SignInPage from './pages/SignInPage';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // import { divide } from "lodash";
 
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/contacts" component={Contacts} />
+          <Route path='/signin' component={SignInPage}/>
         </Switch>
       </Suspense>
     </Router>

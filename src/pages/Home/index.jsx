@@ -4,18 +4,9 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <>
-      <header>
-        <nav>
-          <ul style={{ display: "flex", margin: "20px 10px" }}>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/contacts">Contacts</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+          <Link to="/about">About</Link>
+          <Link to="/contacts">Contacts</Link>
+          <Link to='/signin'>Form</Link>
       <div style={{ margin: "20px" }}>Home!</div>
     </>
   );
