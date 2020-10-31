@@ -1,14 +1,15 @@
 import React, { Component, Suspense, lazy } from "react";
 import "./App.css";
 import MousePosition from "./components/MousePosition";
-import styles from './components/MousePosition/MouthePosition.module.css'
-const Home = lazy(() => import("./pages/Home"));
-
+import Watch from "./components/Watch";
+import styles from "./components/MousePosition/MouthePosition.module.css";
 
 const App = () => {
   return (
     <>
-      <MousePosition>
+      <Watch />
+    </>
+    /* <MousePosition>
         {(xPosition, yPosition) => (
           <div className={styles.container}>
             <div>
@@ -16,8 +17,7 @@ const App = () => {
             </div>
           </div>
         )}
-      </MousePosition>
-    </>
+      </MousePosition>  */
   );
 };
 
