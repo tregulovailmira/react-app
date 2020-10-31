@@ -1,29 +1,9 @@
 import React, { Component, Suspense, lazy } from "react";
 import "./App.css";
-// import UserListContainer from "./components/UserListContainer";
-// import Form from "./components/forms/SignInForm";
-// import SignInFormik from "./components/forms/SignInFormik";
-import SignInPage from './pages/SignInPage';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-// import { divide } from "lodash";
-
-const About = lazy(() => import("./pages/About"));
-const Home = lazy(() => import("./pages/Home"));
-const Contacts = lazy(() => import("./pages/Contacts"));
+import MousePosition from "./components/MousePosition";
 
 const App = () => {
-  return (
-    <Router>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/contacts" component={Contacts} />
-          <Route path='/signin' component={SignInPage}/>
-        </Switch>
-      </Suspense>
-    </Router>
-  );
+  return <MousePosition />;
 };
 
 export default App;
