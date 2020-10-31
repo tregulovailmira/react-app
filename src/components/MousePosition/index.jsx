@@ -8,24 +8,24 @@ class MousePosition extends Component {
   };
 
   getPosition = (event) => {
-    console.log(event.target.clientX);
-    console.log(event);
     this.setState({
       xPosition: event.clientX,
       yPosition: event.clientY,
     });
   };
 
+  componentDidMount() {
+    window.addEventListener("mousemove", this.getPosition);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("mousemove", this.getPosition);
+  }
+
   render() {
     const { xPosition, yPosition } = this.state;
     return (
-      <>
-        <div onMouseMove={this.getPosition} className={styles.container}>
-          <div>
-            X: {xPosition}, Y: {yPosition}
-          </div>
-        </div>
-      </>
+      this.props.children(xPosition, yPosition)
     );
   }
 }
