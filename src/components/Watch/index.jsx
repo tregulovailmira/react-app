@@ -36,15 +36,15 @@ const Watch = () => {
 
   return (
     <>
-      <div>
-        <span>{hours}</span>:
-        <span>{minutes}</span>:
-        <span>{seconds}</span>:
+      <div className={styles.timerWrapper}>
+        <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>:
         <span>{milliseconds}</span>
       </div>
-      <button onClick={startTimer}>Start</button>
-      <button onClick={stopTimer}>Stop</button>
-      <button onClick={resetTimer}>Reset</button>
+      <div className={styles.controlsWrapper}>
+        <button onClick={startTimer}>Start</button>
+        <button onClick={stopTimer}>Stop</button>
+        <button onClick={resetTimer}>Reset</button>
+      </div>
     </>
   );
 };

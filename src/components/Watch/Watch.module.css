@@ -1,0 +1,16 @@
+.timerWrapper {
+  font-size: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.controlsWrapper {
+  display: flex;
+  justify-content: center;
+  
+}
+
+.controlsWrapper > button {
+    font-size: 40px;
+    margin: 0 10px;
+}

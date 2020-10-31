@@ -1,8 +1,6 @@
-import React, { Component, Suspense, lazy } from "react";
+import React from "react";
 import "./App.css";
-import MousePosition from "./components/MousePosition";
 import Watch from "./components/Watch";
-import styles from "./components/MousePosition/MouthePosition.module.css";
 
 const App = () => {
   return (
